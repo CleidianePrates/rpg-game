@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  rpg-game:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: eldoria-rpg
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Opcional: dev server com hot-reload
+  rpg-dev:
+    image: node:20-alpine
+    container_name: eldoria-rpg-dev
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    command: sh -c "npm ci && npm run dev"
+    profiles:
+      - dev
