@@ -14,7 +14,8 @@
     "zustand": "^4.5.2",
     "framer-motion": "^11.2.10",
     "lucide-react": "^0.400.0",
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "phaser": "^3.80.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
